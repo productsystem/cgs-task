@@ -47,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         rb.velocity = new Vector2(moveDir.x * moveSpeed, rb.velocity.y);
-        RaycastHit2D ray = Physics2D.Raycast(transform.position,Vector2.down,1.1f , groundLayer);
+        RaycastHit2D ray = Physics2D.Raycast(transform.position,Vector2.down,2f , groundLayer);
         if(ray.collider != null)
         {
             if(ray.collider.CompareTag("Ground"))
