@@ -1,4 +1,5 @@
 using System.Collections;
+using Cinemachine;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -102,6 +103,13 @@ public class PlayerMovement : MonoBehaviour
                 playerHealth--;
                 StartCoroutine(Invincible());
             }
+        }
+        if(other.gameObject.name == "BossRoomTrigger")
+        {
+            CinemachineVirtualCamera cam = GameObject.Find("Virtual Camera").GetComponent<CinemachineVirtualCamera>();
+            cam.LookAt = other.gameObject.transform;
+            cam.Follow = other.gameObject.transform;
+            cam.m_Lens.OrthographicSize = 10f;
         }
     }
 }
