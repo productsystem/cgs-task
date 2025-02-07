@@ -1,7 +1,7 @@
-using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -10,14 +10,21 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundLayer;
     public float playerHealth = 3f;
     public TextMeshProUGUI healthText;
+    public float invincibleTime = 1f;
+    public float jumpGrav = 2f;
+    public float fallGrav = 3f;
+    public float collisionCheckRay = 2f;
+
 
     private Rigidbody2D rb;
     private PlayerInput playerInput;
     private bool isGrounded = false;
     private Vector2 moveDir = Vector2.zero;
+    private bool harmable = true;
 
     void Start()
     {
+        harmable = true;
         playerInput = new PlayerInput();
         playerInput.Enable();
         playerInput.Movement.Move.performed += moving =>
@@ -34,14 +41,18 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if(playerHealth <= 0)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
         healthText.text = "Health : " + playerHealth;
         if(rb.velocity.y < 0)
         {
-            rb.gravityScale = 3;
+            rb.gravityScale = fallGrav;
         }
         else
         {
-            rb.gravityScale = 2;
+            rb.gravityScale = jumpGrav;
         }
     }
 
@@ -56,7 +67,7 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         rb.velocity = new Vector2(moveDir.x * moveSpeed, rb.velocity.y);
-        RaycastHit2D ray = Physics2D.Raycast(transform.position,Vector2.down,2f , groundLayer);
+        RaycastHit2D ray = Physics2D.Raycast(transform.position,Vector2.down,collisionCheckRay , groundLayer);
         if(ray.collider != null)
         {
             if(ray.collider.CompareTag("Ground"))
@@ -73,5 +84,24 @@ public class PlayerMovement : MonoBehaviour
             isGrounded = false;
         }
         
+    }
+
+    IEnumerator Invincible()
+    {
+        harmable = false;
+        yield return new WaitForSeconds(invincibleTime);
+        harmable = true;
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.CompareTag("Hazard"))
+        {
+            if(harmable)
+            {
+                playerHealth--;
+                StartCoroutine(Invincible());
+            }
+        }
     }
 }
