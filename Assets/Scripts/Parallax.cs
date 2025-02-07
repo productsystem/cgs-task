@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Parallax : MonoBehaviour
 {
+    public float length;
+
     public Transform player;
     public float parallaxSpeed = 0.5f;
 
