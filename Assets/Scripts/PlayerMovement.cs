@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     public float jumpGrav = 2f;
     public float fallGrav = 3f;
     public float collisionCheckRay = 2f;
+    public bool isPaused = false;
 
 
     private Rigidbody2D rb;
@@ -37,6 +38,21 @@ public class PlayerMovement : MonoBehaviour
         {
             Jump();
         };
+        playerInput.Movement.Pause.performed += paused =>
+        {
+            if(!isPaused)
+            {
+                GameObject.FindObjectOfType<GameManager>().PauseMenuOpen();
+                Time.timeScale = 0;
+                isPaused = true;
+            }
+            if(isPaused)
+            {
+                GameObject.FindObjectOfType<GameManager>().PauseMenuClose();
+                Time.timeScale = 1;
+                isPaused = true;
+            }
+        };
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -55,6 +71,8 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.gravityScale = jumpGrav;
         }
+
+
     }
 
     void Jump()
@@ -110,6 +128,11 @@ public class PlayerMovement : MonoBehaviour
             cam.LookAt = other.gameObject.transform;
             cam.Follow = other.gameObject.transform;
             cam.m_Lens.OrthographicSize = 10f;
+        }
+
+        if(other.CompareTag("Goal"))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 }
