@@ -15,17 +15,21 @@ public class PlayerMovement : MonoBehaviour
     public float jumpGrav = 2f;
     public float fallGrav = 3f;
     public float collisionCheckRay = 2f;
-    public bool isPaused = false;
+    public GameObject pauseMenu;
+    public GameManager gameManager;
 
 
     private Rigidbody2D rb;
     private PlayerInput playerInput;
     private bool isGrounded = false;
+    public bool isPaused = false;
     private Vector2 moveDir = Vector2.zero;
     private bool harmable = true;
 
     void Start()
     {
+        gameManager = GameObject.FindObjectOfType<GameManager>();
+        pauseMenu = GameObject.Find("PauseMenu");
         harmable = true;
         playerInput = new PlayerInput();
         playerInput.Enable();
@@ -40,20 +44,17 @@ public class PlayerMovement : MonoBehaviour
         };
         playerInput.Movement.Pause.performed += paused =>
         {
-            if(!isPaused)
+            if(!gameManager.isPaused)
             {
-                GameObject.FindObjectOfType<GameManager>().PauseMenuOpen();
-                Time.timeScale = 0;
-                isPaused = true;
+               gameManager.PauseMenuOpen(pauseMenu);
             }
-            if(isPaused)
+            else if(gameManager.isPaused)
             {
-                GameObject.FindObjectOfType<GameManager>().PauseMenuClose();
-                Time.timeScale = 1;
-                isPaused = true;
+                gameManager.PauseMenuClose(pauseMenu);
             }
         };
         rb = GetComponent<Rigidbody2D>();
+        gameManager.PauseMenuClose(pauseMenu);
     }
 
     void Update()

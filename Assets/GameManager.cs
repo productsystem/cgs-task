@@ -3,11 +3,17 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+
+    public bool isPaused = false;
+
     GameObject levelGrid;
     void Start()
     {
+        if(SceneManager.GetActiveScene().buildIndex == 0)
+        {
         levelGrid = GameObject.Find("LevelSelect");
         levelGrid.SetActive(false);
+        }
     }
     public int level = 0;
     public void OpenGridSelect()
@@ -29,13 +35,22 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
-    public void PauseMenuOpen()
+    public void PauseMenuOpen(GameObject pauseMenu)
     {
-
+        pauseMenu.SetActive(true);
+        Time.timeScale = 0;
+        isPaused = true;
     }
 
-    public void PauseMenuClose()
+    public void PauseMenuClose(GameObject pauseMenu)
     {
-        
+        pauseMenu.SetActive(false);
+        Time.timeScale = 1;
+        isPaused = false;
+    }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 }
