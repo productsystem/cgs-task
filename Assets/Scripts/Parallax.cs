@@ -14,15 +14,7 @@ public class Parallax : MonoBehaviour
     void Update()
     {
         Vector2 temp = (cam.transform.position * (1 - parallaxEffect));
-        Vector2 dist = new Vector2(cam.transform.position.x * parallaxEffect, 0);
+        Vector2 dist = new Vector2(cam.transform.position.x * parallaxEffect, cam.transform.position.y);
         transform.position = startpos + dist;
-        if (temp.x > (startpos.x + bounds.x))
-            startpos.x += bounds.x;
-        if (temp.x < (startpos.x - bounds.x))
-            startpos.x -= bounds.x;
-        if (temp.y > (startpos.y + bounds.y))
-            startpos.y += bounds.y;
-        if (temp.y < (startpos.y - bounds.y))
-            startpos.y -= bounds.y;
     }
 }
