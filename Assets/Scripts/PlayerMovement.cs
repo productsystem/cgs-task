@@ -3,6 +3,7 @@ using Cinemachine;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce = 10f;
     public LayerMask groundLayer;
     public float playerHealth = 3f;
-    public TextMeshProUGUI healthText;
+    public Image healthBar;
     public float invincibleTime = 1f;
     public float jumpGrav = 2f;
     public float fallGrav = 3f;
@@ -22,7 +23,6 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private PlayerInput playerInput;
     private bool isGrounded = false;
-    public bool isPaused = false;
     private Vector2 moveDir = Vector2.zero;
     private bool harmable = true;
 
@@ -63,7 +63,7 @@ public class PlayerMovement : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
-        healthText.text = "Health : " + playerHealth;
+        healthBar.fillAmount = playerHealth/ 3f;
         if(rb.velocity.y < 0)
         {
             rb.gravityScale = fallGrav;
@@ -72,7 +72,6 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.gravityScale = jumpGrav;
         }
-
 
     }
 
@@ -115,14 +114,6 @@ public class PlayerMovement : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.CompareTag("Hazard"))
-        {
-            if(harmable)
-            {
-                playerHealth--;
-                StartCoroutine(Invincible());
-            }
-        }
         if(other.gameObject.name == "BossRoomTrigger")
         {
             CinemachineVirtualCamera cam = GameObject.Find("Virtual Camera").GetComponent<CinemachineVirtualCamera>();
@@ -134,6 +125,18 @@ public class PlayerMovement : MonoBehaviour
         if(other.CompareTag("Goal"))
         {
             GameManager.Instance.StartLevel(1);
+        }
+    }
+
+    void OnTriggerStay2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Hazard"))
+        {
+            if(harmable)
+            {
+                playerHealth--;
+                StartCoroutine(Invincible());
+            }
         }
     }
 }
