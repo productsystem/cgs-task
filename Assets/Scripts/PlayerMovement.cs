@@ -73,6 +73,7 @@ public class PlayerMovement : MonoBehaviour
             rb.gravityScale = jumpGrav;
         }
 
+
     }
 
     void Jump()
@@ -114,6 +115,7 @@ public class PlayerMovement : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        
         if(other.gameObject.name == "BossRoomTrigger")
         {
             CinemachineVirtualCamera cam = GameObject.Find("Virtual Camera").GetComponent<CinemachineVirtualCamera>();
@@ -124,7 +126,7 @@ public class PlayerMovement : MonoBehaviour
 
         if(other.CompareTag("Goal"))
         {
-            GameManager.Instance.StartLevel(1);
+            gameManager.StartLevel(1);
         }
     }
 

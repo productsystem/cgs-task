@@ -4,20 +4,20 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance {get; private set;}
+    // public static GameManager Instance {get; private set;}
 
-    void Awake()
-    {
-        if(Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
+    // void Awake()
+    // {
+    //     if(Instance == null)
+    //     {
+    //         Instance = this;
+    //         DontDestroyOnLoad(gameObject);
+    //     }
+    //     else
+    //     {
+    //         Destroy(gameObject);
+    //     }
+    // }
     public float fadeTime = 1f;
     public bool isPaused = false;
     public Animator transition;
@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
     {
         if(SceneManager.GetActiveScene().buildIndex == 0)
         {
-        levelGrid = GameObject.Find("LevelSelect");
+        levelGrid = GameObject.Find("LevelGrid");
         levelGrid.SetActive(false);
         }
     }
@@ -44,6 +44,11 @@ public class GameManager : MonoBehaviour
     public void StartLevel(int level)
     {
         StartCoroutine(LoadLevel(level));
+    }
+
+    void OnDisable()
+    {
+        Debug.Log("huh?");
     }
 
     IEnumerator LoadLevel(int level)
