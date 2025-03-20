@@ -18,9 +18,9 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    public CanvasGroup fadePanel;
     public float fadeTime = 1f;
     public bool isPaused = false;
+    public Animator transition;
 
     GameObject levelGrid;
     void Start()
@@ -43,32 +43,16 @@ public class GameManager : MonoBehaviour
 
     public void StartLevel(int level)
     {
+        StartCoroutine(LoadLevel(level));
+    }
+
+    IEnumerator LoadLevel(int level)
+    {
+        transition.SetTrigger("End");
+        yield return new WaitForSeconds(0.3f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + level);
-    }
-
-    IEnumerator FadeIn()
-    {
-        float t = fadeTime;
-        while(t>0)
-        {
-            t-=Time.deltaTime;
-            fadePanel.alpha = t/fadeTime;
-            yield return null;
-        }
-        fadePanel.alpha = 0;
-    }
-
-    IEnumerator FadeOut(int level)
-    {
-        float t = 0;
-        while(t<fadeTime)
-        {
-            t+= Time.deltaTime;
-            fadePanel.alpha = t/fadeTime;
-            yield return null;
-        }
-        fadePanel.alpha = 1;
-        SceneManager.LoadScene(level);
+        transition.SetTrigger("Start");
+        
     }
 
     public void ExitApplication()
@@ -92,6 +76,6 @@ public class GameManager : MonoBehaviour
 
     public void MainMenu()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadSceneAsync(0);
     }
 }

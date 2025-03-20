@@ -133,7 +133,7 @@ public class PlayerMovement : MonoBehaviour
 
         if(other.CompareTag("Goal"))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            GameManager.Instance.StartLevel(1);
         }
     }
 }
