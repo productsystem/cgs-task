@@ -1,9 +1,25 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance {get; private set;}
 
+    void Awake()
+    {
+        if(Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+    public CanvasGroup fadePanel;
+    public float fadeTime = 1f;
     public bool isPaused = false;
 
     GameObject levelGrid;
@@ -28,7 +44,32 @@ public class GameManager : MonoBehaviour
     public void StartLevel(int level)
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + level);
-    } 
+    }
+
+    IEnumerator FadeIn()
+    {
+        float t = fadeTime;
+        while(t>0)
+        {
+            t-=Time.deltaTime;
+            fadePanel.alpha = t/fadeTime;
+            yield return null;
+        }
+        fadePanel.alpha = 0;
+    }
+
+    IEnumerator FadeOut(int level)
+    {
+        float t = 0;
+        while(t<fadeTime)
+        {
+            t+= Time.deltaTime;
+            fadePanel.alpha = t/fadeTime;
+            yield return null;
+        }
+        fadePanel.alpha = 1;
+        SceneManager.LoadScene(level);
+    }
 
     public void ExitApplication()
     {
