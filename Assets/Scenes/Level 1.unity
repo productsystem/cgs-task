@@ -1365,7 +1365,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1075414502}
+      - m_Target: {fileID: 4259603799191396099, guid: f411f97f90659f9469aa380f6be56749, type: 3}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: StartLevel
         m_Mode: 3
@@ -1980,7 +1980,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1075414502}
+      - m_Target: {fileID: 4259603799191396099, guid: f411f97f90659f9469aa380f6be56749, type: 3}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: StartLevel
         m_Mode: 3
@@ -2405,78 +2405,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1053123000}
   m_CullTransparentMesh: 1
---- !u!1001 &1075414501
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3422029649235221004, guid: f411f97f90659f9469aa380f6be56749, type: 3}
-      propertyPath: m_Name
-      value: SceneManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 4259603799191396099, guid: f411f97f90659f9469aa380f6be56749, type: 3}
-      propertyPath: transition
-      value: 
-      objectReference: {fileID: 1708851781}
-    - target: {fileID: 7920192769980264191, guid: f411f97f90659f9469aa380f6be56749, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7920192769980264191, guid: f411f97f90659f9469aa380f6be56749, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7920192769980264191, guid: f411f97f90659f9469aa380f6be56749, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7920192769980264191, guid: f411f97f90659f9469aa380f6be56749, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7920192769980264191, guid: f411f97f90659f9469aa380f6be56749, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7920192769980264191, guid: f411f97f90659f9469aa380f6be56749, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7920192769980264191, guid: f411f97f90659f9469aa380f6be56749, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7920192769980264191, guid: f411f97f90659f9469aa380f6be56749, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7920192769980264191, guid: f411f97f90659f9469aa380f6be56749, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7920192769980264191, guid: f411f97f90659f9469aa380f6be56749, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: f411f97f90659f9469aa380f6be56749, type: 3}
---- !u!114 &1075414502 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4259603799191396099, guid: f411f97f90659f9469aa380f6be56749, type: 3}
-  m_PrefabInstance: {fileID: 1075414501}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e6c65ee7220fa045b75bfc8af7cb8fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1103183953
 GameObject:
   m_ObjectHideFlags: 0
@@ -2796,7 +2724,6 @@ MonoBehaviour:
   fallGrav: 3
   collisionCheckRay: 2
   pauseMenu: {fileID: 0}
-  gameManager: {fileID: 0}
 --- !u!212 &1433059534
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10520,11 +10447,6 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
---- !u!95 &1708851781 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 2882628616379753511, guid: f411f97f90659f9469aa380f6be56749, type: 3}
-  m_PrefabInstance: {fileID: 1075414501}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1713549812
 GameObject:
   m_ObjectHideFlags: 0
@@ -11086,4 +11008,3 @@ SceneRoots:
   - {fileID: 1103183954}
   - {fileID: 2034813890}
   - {fileID: 850529247}
-  - {fileID: 1075414501}

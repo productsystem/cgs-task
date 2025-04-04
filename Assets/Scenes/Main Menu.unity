@@ -1926,7 +1926,7 @@ GameObject:
   - component: {fileID: 753884461}
   - component: {fileID: 753884460}
   m_Layer: 0
-  m_Name: SwipeManager
+  m_Name: Button Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4394,7 +4394,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3422029649235221004, guid: f411f97f90659f9469aa380f6be56749, type: 3}
       propertyPath: m_Name
-      value: SceneManager
+      value: GameManager
       objectReference: {fileID: 0}
     - target: {fileID: 4259603799191396099, guid: f411f97f90659f9469aa380f6be56749, type: 3}
       propertyPath: fadePanel

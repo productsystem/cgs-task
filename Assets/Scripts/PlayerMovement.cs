@@ -1,6 +1,5 @@
 using System.Collections;
 using Cinemachine;
-using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -28,7 +27,6 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-        gameManager = GameObject.FindObjectOfType<GameManager>();
         pauseMenu = GameObject.Find("PauseMenu");
         harmable = true;
         playerInput = new PlayerInput();
@@ -72,8 +70,6 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.gravityScale = jumpGrav;
         }
-
-
     }
 
     void Jump()
@@ -103,7 +99,6 @@ public class PlayerMovement : MonoBehaviour
         {
             isGrounded = false;
         }
-        
     }
 
     IEnumerator Invincible()
