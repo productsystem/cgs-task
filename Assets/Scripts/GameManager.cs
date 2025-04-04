@@ -4,11 +4,11 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public float fadeTime = 1f;
     public bool isPaused = false;
     public Animator transition;
 
     GameObject levelGrid;
+
     void Start()
     {
         if(SceneManager.GetActiveScene().buildIndex == 0)
@@ -20,7 +20,6 @@ public class GameManager : MonoBehaviour
     public int level = 0;
     public void OpenGridSelect()
     {
-        Debug.Log("grid open");
         GameObject.Find("Exit").SetActive(false);
         GameObject.Find("Start").SetActive(false);
         GameObject.Find("Title").SetActive(false);
@@ -46,18 +45,11 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
-    public void PauseMenuOpen(GameObject pauseMenu)
+    public void TogglePause(GameObject pauseMenu)
     {
-        pauseMenu.SetActive(true);
-        Time.timeScale = 0;
-        isPaused = true;
-    }
-
-    public void PauseMenuClose(GameObject pauseMenu)
-    {
-        pauseMenu.SetActive(false);
-        Time.timeScale = 1;
-        isPaused = false;
+        isPaused = !isPaused;
+        pauseMenu.SetActive(isPaused);
+        Time.timeScale = isPaused ? 0 : 1;
     }
 
     public void MainMenu()

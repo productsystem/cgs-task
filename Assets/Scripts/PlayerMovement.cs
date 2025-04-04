@@ -27,8 +27,11 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         pauseMenu = GameObject.Find("PauseMenu");
         harmable = true;
+
+        //input subscribing
         playerInput = new PlayerInput();
         playerInput.Enable();
         playerInput.Movement.Move.performed += moving =>
@@ -42,17 +45,15 @@ public class PlayerMovement : MonoBehaviour
         };
         playerInput.Movement.Pause.performed += paused =>
         {
-            if(!gameManager.isPaused)
-            {
-               gameManager.PauseMenuOpen(pauseMenu);
-            }
-            else if(gameManager.isPaused)
-            {
-                gameManager.PauseMenuClose(pauseMenu);
-            }
+            gameManager.TogglePause(pauseMenu);
         };
+
+
         rb = GetComponent<Rigidbody2D>();
-        gameManager.PauseMenuClose(pauseMenu);
+
+
+        gameManager.isPaused = false;
+        pauseMenu.SetActive(false);
     }
 
     void Update()

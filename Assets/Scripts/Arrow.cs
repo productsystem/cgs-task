@@ -3,6 +3,7 @@ using UnityEngine;
 public class Arrow : MonoBehaviour
 {
     Rigidbody2D rb;
+    public ParticleSystem hitParticle;
 
     void Start()
     {
@@ -17,6 +18,7 @@ public class Arrow : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+        Instantiate(hitParticle, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 }
