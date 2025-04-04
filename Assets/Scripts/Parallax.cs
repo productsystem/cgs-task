@@ -12,7 +12,7 @@ public class Parallax : MonoBehaviour
 
     void Update()
     {
-        Vector2 dist = new Vector2(cam.transform.position.x * parallaxEffect, cam.transform.position.y);
+        Vector2 dist = new Vector2(cam.transform.position.x * parallaxEffect, 0);
         transform.position = startpos + dist;
     }
 }

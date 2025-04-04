@@ -15,9 +15,10 @@ public class GameManager : MonoBehaviour
         {
         levelGrid = GameObject.Find("LevelGrid");
         levelGrid.SetActive(false);
+        
         }
+        transition.SetTrigger("Start");
     }
-    public int level = 0;
     public void OpenGridSelect()
     {
         GameObject.Find("Exit").SetActive(false);
@@ -28,6 +29,7 @@ public class GameManager : MonoBehaviour
 
     public void StartLevel(int level)
     {
+        Time.timeScale = 1;
         StartCoroutine(LoadLevel(level));
     }
 
@@ -36,7 +38,6 @@ public class GameManager : MonoBehaviour
         transition.SetTrigger("End");
         yield return new WaitForSeconds(0.3f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + level);
-        transition.SetTrigger("Start");
         
     }
 
@@ -54,6 +55,7 @@ public class GameManager : MonoBehaviour
 
     public void MainMenu()
     {
+        Time.timeScale = 1;
         SceneManager.LoadSceneAsync(0);
     }
 }

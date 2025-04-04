@@ -43,7 +43,6 @@ public class PortalPlacer : MonoBehaviour
         if(hit.collider != null)
         {
             dist = hit.distance - 0.1f;
-            Debug.Log("reduce");
         }
         currentPrev.transform.position = transform.position + transform.right * dist;
         currentPrev.transform.rotation = Quaternion.identity;
