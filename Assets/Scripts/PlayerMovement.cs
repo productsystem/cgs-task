@@ -87,6 +87,14 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        if(moveDir.x < 0)
+        {
+            transform.rotation = Quaternion.Euler(0,180,0);
+        }
+        else if (moveDir.x > 0)
+        {
+            transform.rotation = Quaternion.Euler(0,0,0);
+        }
         rb.velocity = new Vector2(moveDir.x * moveSpeed, rb.velocity.y);
         RaycastHit2D ray = Physics2D.Raycast(transform.position,Vector2.down,collisionCheckRay , groundLayer);
         if(ray.collider != null)
