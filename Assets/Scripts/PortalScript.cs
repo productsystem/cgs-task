@@ -7,6 +7,18 @@ public class PortalScript : MonoBehaviour
 
     public Transform dest;
 
+    void Update()
+    {
+        if(gameObject.tag == "PortalGreen")
+        {
+            dest = GameObject.FindWithTag("PortalPurple").transform;
+        }
+        else
+        {
+            dest = GameObject.FindWithTag("PortalGreen").transform;
+        }
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if(portalEnters.Contains(other.gameObject))
