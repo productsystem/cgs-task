@@ -50,6 +50,10 @@ public class PlayerMovement : MonoBehaviour
 
 
         rb = GetComponent<Rigidbody2D>();
+        if(rb == null)
+        {
+            Debug.Log("huh");
+        }
 
 
         gameManager.isPaused = false;

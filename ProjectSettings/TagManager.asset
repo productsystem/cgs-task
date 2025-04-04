@@ -8,6 +8,7 @@ TagManager:
   - Portal
   - Hazard
   - Goal
+  - NPC
   layers:
   - Default
   - TransparentFX
